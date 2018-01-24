@@ -13,18 +13,36 @@ class NewReceipt extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const apiURL = 'https://api.ocr.space/parse/image?language=eng&isOverlayRequired=true&apikey=f17fa6f07c88957&url='
+		const apiURL = 'https://api.ocr.space/parse/image'
 		const imgURL = 'http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650'
 
-		// let object = {method: post}
-		// fetch((apiURL + imgURL), object).then(response => {
-		// 	response.json().then(data => {
-		// 		// Receipt data
-		// 		this.setState({receiptData: data, dataSumbitted: true});
-		// 		// redirect to Tai's page
-		//
-		// 	})
-		// })
+		
+
+		//Prepare form data
+		var formData = new FormData();
+		//formData.append("file", fileToUpload);
+		formData.append("url", imgURL);
+		formData.append("language"   , "eng");
+		formData.append("apikey"  , "f17fa6f07c88957");
+		formData.append("isOverlayRequired", 'true');
+
+		let object = {
+			method: 'post', 
+			body: formData
+		}
+		let base = this; 
+		//Send OCR Parsing request asynchronously
+		fetch(apiURL, object).then(response => {
+			return response.json();
+			console.log('response', response.json());
+		}).then(json => {
+				// Receipt data
+				console.log('json', json);
+				base.props.getReceiptData(json);
+				// redirect to Tai's page
+		}).catch((err) => {
+			console.log('JSON error', err);
+		})
 
 		this.setState({dataSubmitted: true});
 
