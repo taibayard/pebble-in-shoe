@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import Logout from '../auth/Logout.js';
 import { Link } from 'react-router-dom';
-import New from '../receipt/New.js';
+import NewReceipt from '../receipt/NewReceipt.js';
 
 class Nav extends Component {
   render(){
@@ -11,7 +11,7 @@ class Nav extends Component {
       links = (
         <span>
           <Link to="/profile">Profile</Link>
-          <Link to="/new">New Receipt</Link>
+          <Link to="/newreceipt">New Receipt</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
