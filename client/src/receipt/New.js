@@ -2,9 +2,27 @@ import React, { Component } from 'react';
 
 class New extends Component {
 
+	constructor(props){
+		super(props);
+		this.state = {
+			receiptData: {}
+		}
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
-		// POST ROUTE
+		const apiURL = 'https://api.ocr.space/parse/image?language=eng&isOverlayRequired=true&apikey=f17fa6f07c88957&url='
+		const imgURL = 'http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650'
+		
+		let object = {method: post}
+		fetch((apiURL + imgURL), object).then(response => {
+			response.json().then(data => {
+				// Receipt data 
+				this.setState({receiptData: data});
+
+			})
+		})
+
 		alert('An image was submitted');
 	}
 

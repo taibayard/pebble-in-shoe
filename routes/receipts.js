@@ -5,3 +5,4 @@ var mongoose = require('mongoose');
 var User = require('../models/user');
 
 
+// post route return data 
