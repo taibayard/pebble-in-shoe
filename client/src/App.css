@@ -1,4 +1,10 @@
-/* CUSTOM STYLES */
+/* CUSTOM STYLES for Receipt App */
+#testImage {
+  width: 100px;
+  height: 300px;
+}
+
+/* CUSTOM STYLES from Boiler Plate*/
 nav {
   width: 100%;
   background-color: #555;
