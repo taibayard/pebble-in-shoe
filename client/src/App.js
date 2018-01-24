@@ -10,6 +10,7 @@ import Login from './auth/Login.js';
 import Profile from './Profile.js';
 import Signup from './auth/Signup.js';
 import NewReceipt from './receipt/NewReceipt.js';
+import Confirmation from "./receipt/Confirmation.js";
 
 class App extends Component {
   constructor(props){

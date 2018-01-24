@@ -16,17 +16,19 @@ class NewReceipt extends Component {
 		const apiURL = 'https://api.ocr.space/parse/image?language=eng&isOverlayRequired=true&apikey=f17fa6f07c88957&url='
 		const imgURL = 'http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650'
 
-		let object = {method: post}
-		fetch((apiURL + imgURL), object).then(response => {
-			response.json().then(data => {
-				// Receipt data
-				this.setState({receiptData: data, dataSumbitted: true});
-				// redirect to Tai's page
+		// let object = {method: post}
+		// fetch((apiURL + imgURL), object).then(response => {
+		// 	response.json().then(data => {
+		// 		// Receipt data
+		// 		this.setState({receiptData: data, dataSumbitted: true});
+		// 		// redirect to Tai's page
+		//
+		// 	})
+		// })
 
-			})
-		})
+		this.setState({dataSubmitted: true});
 
-		alert('An image was submitted');
+		console.log('An image was submitted');
 	}
 
 	render() {
