@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import Logout from '../auth/Logout.js';
 import { Link } from 'react-router-dom';
+import New from '../receipt/New.js';
 
 class Nav extends Component {
   render(){
@@ -10,6 +11,7 @@ class Nav extends Component {
       links = (
         <span>
           <Link to="/profile">Profile</Link>
+          <Link to="/new">New Receipt</Link>
           <Logout updateUser={this.props.updateUser} />
         </span>);
     }
@@ -28,8 +30,7 @@ class Nav extends Component {
             {links}
           </nav>
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to MERN Stack Boilerplate!</h1>
+            <h1> Receipt Reader Version 1.0</h1>
           </header>
         </div>
       );

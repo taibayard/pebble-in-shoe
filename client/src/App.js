@@ -9,6 +9,8 @@ import Nav from './layout/Nav.js';
 import Login from './auth/Login.js';
 import Profile from './Profile.js';
 import Signup from './auth/Signup.js';
+import New from './receipt/New.js';
+import Single from './receipt/Single.js';
 
 class App extends Component {
   constructor(props){
@@ -80,6 +82,7 @@ class App extends Component {
             <div className="space">
               <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
               <Route exact path="/" component={Home} />
+              <Route path="/new" component={New} />
               <Route path="/login" component={
                 () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
               <Route path="/signup" component={
