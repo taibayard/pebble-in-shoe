@@ -24,6 +24,12 @@ class App extends Component {
     this.getUser();
   }
 
+  getReceiptData = (data) => {
+    this.setState({
+      receiptData: data
+    });
+  }
+
   getUser = () => {
     // If there is a token in localStorage
     let token = localStorage.getItem('mernToken');
@@ -84,7 +90,7 @@ class App extends Component {
               <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
               <Route exact path="/" component={Home} />
               <Route path="/newreceipt" component={
-                 () => (<NewReceipt reset={true} />) } />
+                 () => (<NewReceipt reset={true} getReceiptData = {this.getReceiptData}/>) } />
               <Route path="/login" component={
                 () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
               <Route path="/signup" component={
