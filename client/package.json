@@ -5,10 +5,13 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^1.1.1",
+    "mdbootstrap": "^4.4.4",
     "react": "^16.2.0",
     "react-chartjs": "^1.2.0",
     "react-chartjs-2": "^2.7.0",
-    "react-dom": "^16.2.0"
+    "react-chartjs2": "^1.2.1",
+    "react-dom": "^16.2.0",
+    "react-donut-chart": "^1.1.5"
   },
   "devDependencies": {
     "react-scripts": "1.1.0"

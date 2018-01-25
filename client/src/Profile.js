@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+import RC2 from 'react-chartjs2';
 
 class Profile extends Component {
   constructor(props){
@@ -61,18 +61,13 @@ class Profile extends Component {
  }
 
   render(){
-    componentDidMount() {
-    console.log(this.refs.chart.chart_instance); // returns a Chart.js instance reference
-    }
 
     if(this.props.user && this.props.user.name){
       return (
         <div>
-
-          <h2>HELLO AGAIN {this.props.user.name}!</h2>
           <div className="resultsHeader">
             <div className="resultsTable">
-              <h2> Total # of Receipts: {this.state.categoryData.length}</h2>
+              <h2> # of Receipts Logged: {this.state.categoryData.length}</h2>
               <CatGraph chartdata = {this.state.catTotals} />
               <Categories category={this.state.catTotals} />
             </div>
@@ -90,42 +85,27 @@ const Categories = (props) => {
   return (
     <div className="categoryTotals">
     {props.category.map((c) => (
-      <h2> {c.cat} : {c.total} </h2>
+      <div classNamr="singleCategory">
+      <h3> {c.cat} : ${c.total}</h3>
+      </div>
     ))}
     </div>
   )
 }
 
 const CatGraph = (props) => {
-  console.log('props', props.chartdata);
-
-  let dataSet= [];
-  let labels = [];
-  for(let i=0; i<props.chartdata.length; i++){ 
-    dataSet.push(props.chartdata[i].total),
-    labels.push(props.chartdata[i].cat)
-  }
-  console.log(dataSet)
-  console.log(labels)
-
-  const data = {
-  labels: labels,
-    datasets: [{
-      data: dataSet
-    }]
-  }
+    let dataSet= [];
+    let labels = [];
+    for(let i=0; i<props.chartdata.length; i++){ 
+      dataSet.push(Number(props.chartdata[i].total)),
+      labels.push(props.chartdata[i].cat)
+    }
 
   return (
     <div className="graph" id="dataVisual">
-    <Doughnut ref='chart' data={data}/>
     </div>
   )
 }
 
-{/*var MyComponent = React.createClass({
-  render: function() {
-    return <PolarAreaChart data={chartData} options={chartOptions}/>
-  }
-});*/}
 
 export default Profile;
