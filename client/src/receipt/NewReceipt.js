@@ -81,18 +81,20 @@ class NewReceipt extends Component {
 		return(
 			<div>
 				<h1> Choose receipt image:</h1>
+				<div id="receiptButtons">
 				<input value="Test Receipt 1" name="receipt1" type="submit" className="btn-primary" onClick={this.imageSourceChange} id="0"/>
 				<input value="Test Receipt 2" name="receipt2" type="submit" className="btn-primary" onClick={this.imageSourceChange} id="1"/>
 				<input value="Test Receipt 3" name="receipt3" type="submit" className="btn-primary" onClick={this.imageSourceChange} id="2"/>
 				<input value="Test Receipt 4" name="receipt4" type="submit" className="btn-primary" onClick={this.imageSourceChange} id="3"/>
 				<input value="Test Receipt 5" name="receipt5" type="submit" className="btn-primary" onClick={this.imageSourceChange} id="4"/>
+				</div>
 				<img src={this.state.imageSource} width="700" />
 				<form onSubmit={this.handleSubmit}>
-					<label>Image: </label>
-					<br/>
+					<label>Image: 
 					<input type="file" name="pic" id="pic" />
+					</label>
 					<br/>
-					<input value="Submit" type="submit" className="btn-primary" />
+					<input value="Submit" type="submit" className="btn-secondary" />
 				</form>
 			</div>
 		);
