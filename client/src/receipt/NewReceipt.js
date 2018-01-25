@@ -39,7 +39,6 @@ class NewReceipt extends Component {
 				this.props.getReceiptData(json);
 				this.setState({dataSubmitted: true});
 				localStorage.setItem("resData",JSON.stringify(json));
-				window.location.href = "/confirmation";
 
 				// redirect to Tai's page
 		}).catch((err) => {
