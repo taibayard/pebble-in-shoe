@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
 
 // Controllers
 app.use('/auth', require('./routes/auth'));
+app.use('/receipts', require('./routes/receipts'));
 
 
 app.get('*', function(req, res, next) {
