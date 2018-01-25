@@ -1,13 +1,20 @@
 /* CUSTOM STYLES for Receipt App */
-#testImage {
+#homePageImage {
   width: 100px;
   height: 300px;
 }
 
 /* CUSTOM STYLES from Boiler Plate*/
+
+body, html{
+ font-family: 'Open Sans', sans-serif;
+  background-color: #e8e8e8;
+  color: #2f3039;
+}
 nav {
   width: 100%;
-  background-color: #555;
+  background-color: #2f3039;
+  color: #e8e8e8;
   padding: 10px 0;
 }
 
@@ -15,24 +22,22 @@ nav a {
   margin: 10px;
   text-decoration: none;
   font-size: 18px;
-  color: #4ff;
+  color: #e8e8e8;
 }
 
 nav a:hover {
-  color: #7f4dd2;
+  color: #52799a;
+}
+
+h1 {
+  margin: 0;
 }
 
 .footer {
-  background-color: #555;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 20px;
 }
 
 .footer-text {
-  color: #fff;
-  font-size: 10px;
+
 }
 
 .space {
@@ -40,15 +45,21 @@ nav a:hover {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #11f;
-  border-radius: 2px;
+  background-color: #126796;
+  color: white;
+  margin: 5px;
+  font-size: 16px;
+  padding: 12px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
   border: none;
-  padding: 3px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 
 .btn-primary:hover {
-  background-color: #77f;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .error {
@@ -96,14 +107,17 @@ nav a:hover {
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 50px;
+  padding: 10px;
   color: white;
 }
 
 .App-title {
   font-size: 1.5em;
+  font-size: 32px;
+  font-weight: bold;
+  color: #6f7376;
+  text-transform: uppercase;
 }
 
 .App-intro {
