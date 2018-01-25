@@ -17,7 +17,8 @@ class App extends Component {
     super(props);
     this.state = {
       user: {},
-      receiptData: {}
+      receiptData: {},
+      currentPage: 0
     }
   }
   componentDidMount = () => {
@@ -26,7 +27,8 @@ class App extends Component {
 
   getReceiptData = (data) => {
     this.setState({
-      receiptData: data
+      receiptData: data,
+      currentPage: 1
     })
   }
 
@@ -81,32 +83,53 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <Router>
-          <div>
-            <Nav user={this.state.user} />
-            <div className="space">
-              <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
-              <Route exact path="/" component={Home} />
-              <Route path="/newreceipt" component={
-                 () => (<NewReceipt reset={true} getReceiptData = {this.getReceiptData}/>) } />
-              <Route path="/login" component={
-                () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
-              <Route path="/signup" component={
-                () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
-              <Route path="/profile" component={
-                () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
-                <Route path="/confirmation" component={
-                   () => (<Confirmation receiptData={this.state.receiptData} />)
-                } />
-
-            </div>
+    if(this.state.currentPage == 0){
+          return (
+          <div className="App">
+            <Router>
+              <div>
+                <Nav user={this.state.user} />
+                <div className="space">
+                  <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/newreceipt" component={
+                     () => (<NewReceipt reset={true} getReceiptData = {this.getReceiptData}/>) } />
+                  <Route path="/login" component={
+                    () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                  <Route path="/signup" component={
+                    () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                  <Route path="/profile" component={
+                    () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
+                </div>
+              </div>
+            </Router>
+            <Footer />
           </div>
-        </Router>
-        <Footer />
-      </div>
-    );
+        );
+    } else {
+          return (
+          <div className="App">
+            <Router>
+              <div>
+                <Nav user={this.state.user} />
+                <div className="space">
+                  <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/newreceipt" component={
+                     () => (<Confirmation receiptData={this.state.receiptData} />) } />
+                  <Route path="/login" component={
+                    () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                  <Route path="/signup" component={
+                    () => (<Signup user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
+                  <Route path="/profile" component={
+                    () => (<Profile user={this.state.user} setFlash={this.setFlash} />)} />
+                </div>
+              </div>
+            </Router>
+            <Footer />
+          </div>
+        );
+    }
   }
 }
 
