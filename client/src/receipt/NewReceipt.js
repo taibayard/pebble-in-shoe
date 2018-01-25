@@ -15,7 +15,7 @@ class NewReceipt extends Component {
 
 		// here is where you can put the image links - then match name of button to one of the positions in the array
 		const imgURL = ['http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650',
-		'', '', '', '']
+		'http://adam.piettes.com/temp/wdi-hackathon/20180124_223047.jpg', '', '', ''];
 		const apiURL = 'https://api.ocr.space/parse/image'
 		
 		// set this equal to whatever image url matches the button pressed
@@ -26,7 +26,7 @@ class NewReceipt extends Component {
 		//Prepare form data
 		var formData = new FormData();
 		//formData.append("file", fileToUpload);
-		formData.append("url", imgURL);
+		formData.append("url", imgURL[1]);
 		formData.append("language"   , "eng");
 		formData.append("apikey"  , "f17fa6f07c88957");
 		formData.append("isOverlayRequired", 'true');

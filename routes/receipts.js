@@ -56,7 +56,8 @@ router.post('/add', function(req,res){
 				console.log('DB error', err);
 				return res.status(500).send({error: true, message: 'Database Error - ' + err.message});
 			}
-			res.json(data);
+			//res.json(data);
+			res.send("total : " + req.body.total);
 		});
 	})
 
