@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
+
 var receiptSchema = new mongoose.Schema({
 	userId: {
 		type: String,
@@ -13,6 +14,10 @@ var receiptSchema = new mongoose.Schema({
 	category: {
 		type: String,
 		required: true,
+	},
+	createdAt: {
+		type: String,
+		required: true
 	}
 });
 
