@@ -18,6 +18,49 @@ router.get('/', function(req,res){
 	res.json(testData)
 });
 
+router.post('/add', function(req,res){
+	var token = req.body.token || req.query.token;
+	
+	if (!token) {
+	return res.status(401).send({error: true, message: 'You Must Pass a Token!'});
+	}
+
+	// get current user from token
+	jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
+		if (err){
+		  return res.status(500).send({ error: true, message: 'JWT Verification Error - ' + err});
+		}
+
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+
+		var yyyy = today.getFullYear();
+
+		if(dd<10){
+		    dd='0'+dd;
+		} 
+		if(mm<10){
+		    mm='0'+mm;
+		} 
+		
+		today = mm+'/'+dd+'/'+yyyy;
+
+		Receipt.create({
+			userId: user._id,
+			total: req.body.total,
+			category: req.body.category,
+			createdAt: today
+		}, function(err, data){
+			if(err) {
+				console.log('DB error', err);
+				return res.status(500).send({error: true, message: 'Database Error - ' + err.message});
+			}
+			res.json(data);
+		});
+	})
+
+})
 
 // live get route return data 
 // router.get('/', function(req, res){
