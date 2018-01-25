@@ -27,7 +27,7 @@ class App extends Component {
   getReceiptData = (data) => {
     this.setState({
       receiptData: data
-    });
+    })
   }
 
   getUser = () => {
