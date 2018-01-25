@@ -10,7 +10,7 @@ import Login from './auth/Login.js';
 import Profile from './Profile.js';
 import Signup from './auth/Signup.js';
 import NewReceipt from './receipt/NewReceipt.js';
-import Confirmation from "./receipt/Confirmation.js";
+import Confirmation from "./receipt/confirmation.js";
 
 class App extends Component {
   constructor(props){
@@ -93,7 +93,7 @@ class App extends Component {
                   <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
                   <Route exact path="/" component={Home} />
                   <Route path="/newreceipt" component={
-                     () => (<NewReceipt reset={true} getReceiptData = {this.getReceiptData}/>) } />
+                     () => (<NewReceipt reset={true} getReceiptData = {this.getReceiptData} setFlash={this.setFlash}/>) } />
                   <Route path="/login" component={
                     () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
                   <Route path="/signup" component={
@@ -116,7 +116,7 @@ class App extends Component {
                   <Flash flashType={this.state.flashType} flash={this.state.flash} setFlash={this.setFlash} cancelFlash={this.cancelFlash} />
                   <Route exact path="/" component={Home} />
                   <Route path="/newreceipt" component={
-                     () => (<Confirmation receiptData={this.state.receiptData} />) } />
+                     () => (<Confirmation receiptData={this.state.receiptData} setFlash={this.setFlash}/>) } />
                   <Route path="/login" component={
                     () => (<Login user={this.state.user} setFlash={this.setFlash} updateUser={this.updateUser} />)} />
                   <Route path="/signup" component={
