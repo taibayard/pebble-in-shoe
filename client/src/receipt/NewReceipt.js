@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class NewReceipt extends Component {
 
 	constructor(props){
 		super(props);
 		this.state = {
-			receiptData: {},
 			dataSubmitted: false
 		}
 	}
@@ -30,35 +29,30 @@ class NewReceipt extends Component {
 			method: 'post', 
 			body: formData
 		}
-		let base = this; 
 		//Send OCR Parsing request asynchronously
-		fetch(apiURL, object).then(response => {
+		fetch(apiURL, object).then((response) => {
 			return response.json();
 			console.log('response', response.json());
-		}).then(json => {
+		}).then( (json) => {
 				// Receipt data
 				console.log('json', json);
-				base.props.getReceiptData(json);
+				this.props.getReceiptData(json);
+				this.setState({dataSubmitted: true});
+				localStorage.setItem("resData",JSON.stringify(json));
+				window.location.href = "/confirmation";
 				// redirect to Tai's page
 		}).catch((err) => {
 			console.log('JSON error', err);
 		})
 
-		this.setState({dataSubmitted: true});
-
 		console.log('An image was submitted');
 	}
-
+	componentDidMount(){
+		this.setState({
+			dataSubmitted:false
+		});
+	}
 	render() {
-
-		if (this.props.reset && this.state.dataSubmitted===true) {
-			this.setState({ dataSubmitted: false});
-		}
-
-		if (this.state.dataSubmitted) {
-			return (<Redirect to="/confirmation" />);
-		}
-
 		return(
 			<div>
 				<h1> Enter your receipt image here.</h1>
@@ -69,7 +63,7 @@ class NewReceipt extends Component {
 					<br/>
 					<input type="file" name="pic" id="pic" />
 					<br/>
-					<input type="submit" value="New Receipt" className="btn-primary" />
+					<input value="Submit" type="submit" className="btn-primary" />
 				</form>
 			</div>
 		);
