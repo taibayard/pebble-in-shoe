@@ -4,6 +4,13 @@
   height: 300px;
 }
 
+.bar {
+  z-index: -1;
+  display:inline;
+  background-color: green;
+  height: 100px;
+}
+
 canvas {
     width: 100% !important;
     height: auto !important;

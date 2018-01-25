@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Pie} from 'react-chartjs-2';
+import RC2 from 'react-chartjs2';
 
 class Profile extends Component {
   constructor(props){
@@ -86,7 +86,7 @@ const Categories = (props) => {
     <div className="categoryTotals">
     {props.category.map((c) => (
       <div classNamr="singleCategory">
-      <h3> {c.cat} : ${c.total} </h3>
+      <h3> {c.cat} : ${c.total}</h3>
       </div>
     ))}
     </div>
@@ -97,14 +97,12 @@ const CatGraph = (props) => {
     let dataSet= [];
     let labels = [];
     for(let i=0; i<props.chartdata.length; i++){ 
-      dataSet.push(props.chartdata[i].total),
+      dataSet.push(Number(props.chartdata[i].total)),
       labels.push(props.chartdata[i].cat)
     }
 
-
   return (
     <div className="graph" id="dataVisual">
-    
     </div>
   )
 }
