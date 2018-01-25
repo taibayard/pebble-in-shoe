@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Doughnut} from 'react-chartjs-2';
 
 class Profile extends Component {
   constructor(props){
@@ -60,6 +61,10 @@ class Profile extends Component {
  }
 
   render(){
+    componentDidMount() {
+    console.log(this.refs.chart.chart_instance); // returns a Chart.js instance reference
+    }
+
     if(this.props.user && this.props.user.name){
       return (
         <div>
@@ -68,6 +73,7 @@ class Profile extends Component {
           <div className="resultsHeader">
             <div className="resultsTable">
               <h2> Total # of Receipts: {this.state.categoryData.length}</h2>
+              <CatGraph chartdata = {this.state.catTotals} />
               <Categories category={this.state.catTotals} />
             </div>
           </div>
@@ -89,5 +95,37 @@ const Categories = (props) => {
     </div>
   )
 }
+
+const CatGraph = (props) => {
+  console.log('props', props.chartdata);
+
+  let dataSet= [];
+  let labels = [];
+  for(let i=0; i<props.chartdata.length; i++){ 
+    dataSet.push(props.chartdata[i].total),
+    labels.push(props.chartdata[i].cat)
+  }
+  console.log(dataSet)
+  console.log(labels)
+
+  const data = {
+  labels: labels,
+    datasets: [{
+      data: dataSet
+    }]
+  }
+
+  return (
+    <div className="graph" id="dataVisual">
+    <Doughnut ref='chart' data={data}/>
+    </div>
+  )
+}
+
+{/*var MyComponent = React.createClass({
+  render: function() {
+    return <PolarAreaChart data={chartData} options={chartOptions}/>
+  }
+});*/}
 
 export default Profile;
