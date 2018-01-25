@@ -12,8 +12,15 @@ class NewReceipt extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+
+		// here is where you can put the image links - then match name of button to one of the positions in the array
+		const imgURL = ['http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650',
+		'', '', '', '']
 		const apiURL = 'https://api.ocr.space/parse/image'
-		const imgURL = 'http://cdn.newsapi.com.au/image/v1/b1b236b31ff63cb3a7a3ef82916f24c3?width=650'
+		
+		// set this equal to whatever image url matches the button pressed
+		// and use this in the formData Object
+		const img = ''
 
 
 		//Prepare form data
@@ -55,9 +62,12 @@ class NewReceipt extends Component {
 	render() {
 		return(
 			<div>
-				<h1> Enter your receipt image here.</h1>
-				<img src="../img/test_receipt.jpg" alt="Receipt"></img>
-
+				<h1> Choose receipt image:</h1>
+				<input value="Test Receipt 1" name="receipt1" type="submit" className="btn-primary" />
+				<input value="Test Receipt 2" name="receipt2" type="submit" className="btn-primary" />
+				<input value="Test Receipt 3" name="receipt3" type="submit" className="btn-primary" />
+				<input value="Test Receipt 4" name="receipt4" type="submit" className="btn-primary" />
+				<input value="Test Receipt 5" name="receipt5" type="submit" className="btn-primary" />
 				<form onSubmit={this.handleSubmit}>
 					<label>Image: </label>
 					<br/>
