@@ -25,18 +25,12 @@ class Nav extends Component {
 
     return(
         <div>
-          <nav className="navbar navbar-default">
-            <div class="container">
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
+          <nav className="nav">
             <a href="/">Home</a>
             {links}
-                  </ul>
-              </div>
-            </div>
           </nav>
           <header className="App-header">
-            <h1> Receipt Reader Version 1.0</h1>
+            <h1 className="App-title">Where did my cash go?</h1>
           </header>
         </div>
       );
