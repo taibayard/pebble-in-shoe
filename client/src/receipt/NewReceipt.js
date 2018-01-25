@@ -26,7 +26,7 @@ class NewReceipt extends Component {
 		//Prepare form data
 		var formData = new FormData();
 		//formData.append("file", fileToUpload);
-		formData.append("url", imgURL[1]);
+		formData.append("url", imgURL[0]);
 		formData.append("language"   , "eng");
 		formData.append("apikey"  , "f17fa6f07c88957");
 		formData.append("isOverlayRequired", 'true');
