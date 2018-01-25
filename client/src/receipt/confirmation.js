@@ -48,13 +48,18 @@ findToatalData = (item, priceData) =>{
     return Math.max.apply(Math, lowestDiff.map(function(o) { return o.price; }));;
   }
    render() {
-    let temp = JSON.parse(localStorage.getItem("resData"));
-    let searchData = this.getResultData(temp);
+    let searchData = this.getResultData(this.props.receiptData);
     let priceData = searchData[0];
     let receiptTotal = this.findToatalData(searchData[1], priceData);
+    let category = "test";
       return(
          <div>
-            <h1>{"$"+receiptTotal}</h1>
+            <form method="POST" action="/receipts/add">
+              <input name="category" type="hidden" value={category}/>
+              <input name="total" type="hidden" value={receiptTotal}/>
+              <input name="token" type="hidden" value={localStorage.getItem("mernToken")}/>
+              <input type="submit" value="Submit" />
+            </form>
          </div>
       )
    }

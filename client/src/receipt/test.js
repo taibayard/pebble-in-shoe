@@ -933,9 +933,30 @@ function findToatalData(item, priceData) {
       }
     }
   }
-  return Math.max.apply(Math, lowestDiff.map(function(o) { return o.price; }));;
+  let t = Math.max.apply(Math, lowestDiff.map(function(o) { return o.price; }));//gets total from highest "Total" found;
+  return(t)
+}
+//generates equation based on prices from receipt and the total cost of all the items
+function findEquation(solution,input) {
+  var correctEquation = false;
+  var testEquation = [];
+  var f = function(prefix, input) {
+    testEquation = [];
+    for (let i = 0; i < input.length; i++) {
+      testEquation.push(prefix + input[i].WordText);
+      let product = testEquation[0].toString().split("/");
+      product = product.reduce(function(a,b){return  parseFloat(a)+parseFloat(b)});
+      if(solution === product){
+        correctEquation = testEquation.toString().split("/");
+      }
+      f(prefix + input[i].WordText+ "/", input.slice(i + 1));
+    }
+  }
+  f(0, input,0);
+  return correctEquation;
 }
 let searchData = getResultData(resultData);
 let priceData = searchData[0];
 let totalLocation = findToatalData(searchData[1], priceData);
-console.log(totalLocation);
+let receiptPrices = findEquation(totalLocation,priceData)
+console.log(totalLocation,receiptPrices);
