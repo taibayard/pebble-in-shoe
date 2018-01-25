@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-
-//let testData = [{food: 14}, {electronics: 50}, {food: 10}, {clothes: 12}, {electronics: 23}]
-let testData = [ {cat: "food", total: "50"}, {cat: "electronics", total: "44"}, {cat: "food", total: "10"}, {cat: "clothes", total: "12"}, {cat: "electornics", total: "23"}];
-
-
-
 class Profile extends Component {
   constructor(props){
     super(props);
@@ -16,43 +10,53 @@ class Profile extends Component {
     }
   }
 
-  componentDidMount(){
-    fetch('/').then(function(response){
+  componentDidMount = () => {
+    var base = this; 
+    fetch('/receipts').then(function(response){
+      if(!response) {
+        return null;
+      }
+
       return response.json();
-    }).then(function(json){
+    }).then(function(response){
+      
+      let categoryList = base.state.category.slice();
 
-      let categoryList = this.state.category.slice();
-
-      this.setState({categoryData: json}, function() {
-         for(let i=0; i<this.state.categoryData.length; i++) {
-            let cat = categoryData[i].cat;
+      base.setState({categoryData: response}, function() {
+         for(let i=0; i<base.state.categoryData.length; i++) {
+            let cat = base.state.categoryData[i].cat;
+            let match= false;
             for( let j=0; j<categoryList.length; j++) {
-               if( cat!== categoryList[j]) {
-                  categoryList.push(cat);
-               }
+               if( cat== categoryList[j]) match=true;
+            }
+            if(!match) {
+              categoryList.push(cat);
             }
          }
-         this.setState({category: categoryList}, function() {
-            getCategoryTotals();
+         
+         base.setState({category: categoryList}, function() {
+          
+            base.getCategoryTotals(base);
          });
       });
     })
   }
 
 
-  getCategoryTotals = () => {
+  getCategoryTotals = (base) => {
+    console.log('test cat state', base.state.category)
      let catState = [];
-     for( let j=0; j<this.state.category.length; j++) {
+     for( let j=0; j<base.state.category.length; j++) {
         let total=0;
-        for(let i=0; i<this.state.categoryData.length) {
-           if( this.state.category[j] === this.state.categoryData[j].cat) {
-             total += this.state.categoryData[j].total;
+        for(let i=0; i<base.state.categoryData.length; i++) {
+           if( base.state.category[j] === base.state.categoryData[i].cat) {
+             total += Number(base.state.categoryData[i].total);
           }
         }
-        catState.push({ cat: this.state.category[j], total: total});
+        catState.push({ cat: base.state.category[j], total: total});
      }
 
-   this.setState({catTotals: catState});
+   base.setState({catTotals: catState});
  }
 
   render(){
@@ -64,12 +68,9 @@ class Profile extends Component {
           <div className="resultsHeader">
             <div className="resultsTable">
               <h2> Total # of Receipts: {this.state.categoryData.length}</h2>
-              <h2> </h2>
               <Categories category={this.state.catTotals} />
             </div>
           </div>
-
-
         </div>);
     }
     else {
@@ -79,12 +80,12 @@ class Profile extends Component {
 }
 
 const Categories = (props) => {
-
+  console.log(props.category);
   return (
     <div className="categoryTotals">
-    {props.category.map(c => {
+    {props.category.map((c) => (
       <h2> {c.cat} : {c.total} </h2>
-    })}
+    ))}
     </div>
   )
 }
